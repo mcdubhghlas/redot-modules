@@ -236,7 +236,8 @@ String module_RSA::decrypt(const String &ciphertext) {
 
 	EVP_PKEY_CTX_free(ctx);
 
-	return String(reinterpret_cast<const char*>(decrypted.data()), decrypted.size());
+	return String(std::string({ decrypted.begin(), decrypted.end() }).c_str());
+	//return String(reinterpret_cast<const char*>(decrypted.data()), decrypted.size());
 }
 
 #else
